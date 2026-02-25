@@ -1,1 +1,51 @@
+# ------------------------------------------------------------------
+# Generate requirements.txt
+# ------------------------------------------------------------------
+reqs = """\
+torch>=2.0.0
+torchvision>=0.15.0
+numpy>=1.23.0
+matplotlib>=3.7.0
+scikit-learn>=1.2.0
+Pillow>=9.5.0
+tqdm>=4.65.0
+seaborn>=0.12.0
+"""
+with open("requirements.txt", "w") as f:
+    f.write(reqs)
+print("requirements.txt written.")
+
+# ------------------------------------------------------------------
+# Final deliverables summary
+# ------------------------------------------------------------------
+print("\n" + "="*55)
+print("DELIVERABLES GENERATED")
+print("="*55)
+print("  models/head_best.pth              <- trained model")
+print("  cache/features_all.pt             <- cached features")
+print("  cache/labels_all.pt               <- cached labels")
+print("  outputs/training_loss_curve.png")
+print("  outputs/accuracy_curve.png")
+print("  outputs/timing_comparison_bar.png")
+print("  outputs/storage_comparison_bar.png")
+print("  outputs/confusion_matrix.png")
+print("  outputs/summary.json              <- metrics + timings")
+print("  outputs/metrics_table.csv         <- accuracy vs efficiency")
+print("  inference.py                      <- inference script")
+print("  requirements.txt")
+print("="*55)
+print("Still needed from you: report.md  |  README.md")
+
+# ------------------------------------------------------------------
+# Optional CLI: python full_experiment.py --infer image.jpg
+# ------------------------------------------------------------------
+if __name__ == "__main__":
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--infer", type=str, default=None,
+                        help="Run inference on one image after training")
+    args, _ = parser.parse_known_args()
+    if args.infer:
+        infer_image(args.infer)
+
 
